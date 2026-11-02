@@ -1,4 +1,4 @@
-# OPT3 — depth-confirmed cleanup and fingertip model
+# V3 — depth-confirmed cleanup and fingertip model
 
 - Full 2,400 candidate experiment on capture `0000`.
 - Environment PASS: **16**.
