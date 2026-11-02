@@ -1,4 +1,4 @@
-# OPT4 — aggressive ROI occupancy ablation (not yet verified)
+# V4 — aggressive ROI occupancy ablation (not yet verified)
 
 - Goal: test whether object-relative 3D filtering of background points changes Environment PASS counts.
 - Configuration includes `halo_policy` (`off`, `isolated_only`, `experimental_roi`), object whitelist and plane/other-object guards.
