@@ -1,4 +1,4 @@
-# OPT2 — local pose refinement (subset experiment)
+# V2 — local pose refinement (subset experiment)
 
 - Investigated 16 previously saved OPT1 Environment-PASS candidates.
 - Tested 7 offsets per selected candidate (112 tested variants); translation radius at most 0.5 mm.
