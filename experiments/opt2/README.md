@@ -6,4 +6,4 @@
 - Full geometric PASS offsets: **0**.
 - Original target CAD was non-watertight and the conservative collision model still rejected target-body intersections.
 
-**Do not count OPT2 as a new 2,400-candidate full run.**
+**Do not count V2 as a new 2,400-candidate full run.**
