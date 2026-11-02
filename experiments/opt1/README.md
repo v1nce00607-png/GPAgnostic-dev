@@ -1,4 +1,4 @@
-# OPT1 — filtering and collision-aware screening
+# V1 — filtering and collision-aware screening
 
 - Full 2,400 candidate experiment on capture `0000`.
 - Environment PASS: **16**.
