@@ -1,0 +1,44 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "model": {
+      "default": "2fg7",
+      "enum": [
+        "2fg7",
+        "rg2",
+        "rg6"
+      ],
+      "title": "Model",
+      "type": "string"
+    },
+    "name": {
+      "default": "OnRobot_2FG7",
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "title": "Name",
+      "type": "string"
+    },
+    "contact_inset_m": {
+      "default": 0.002,
+      "maximum": 0.008,
+      "minimum": 0.002,
+      "title": "Contact Inset M",
+      "type": "number"
+    },
+    "opening_extra_m": {
+      "default": 0.012,
+      "exclusiveMinimum": 0,
+      "maximum": 0.04,
+      "title": "Opening Extra M",
+      "type": "number"
+    },
+    "closing_speed_m_s": {
+      "default": 0.02,
+      "exclusiveMinimum": 0,
+      "maximum": 0.03,
+      "title": "Closing Speed M S",
+      "type": "number"
+    }
+  },
+  "title": "HardwareSpec",
+  "type": "object"
+}

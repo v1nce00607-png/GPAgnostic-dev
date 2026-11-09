@@ -1,0 +1,658 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Semantic Grasp Planner",
+    "version": "3.0.2"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/schemas": {
+      "get": {
+        "summary": "Schemas",
+        "operationId": "schemas_v3_schemas_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/grippers/validate": {
+      "post": {
+        "summary": "Validate",
+        "operationId": "validate_v3_grippers_validate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HardwareSpec"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/plan": {
+      "post": {
+        "summary": "Submit",
+        "operationId": "submit_v3_plan_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/jobs/{job_id}": {
+      "get": {
+        "summary": "Status",
+        "operationId": "status_v3_jobs__job_id__get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/jobs/{job_id}/files/{name}": {
+      "get": {
+        "summary": "Result File",
+        "operationId": "result_file_v3_jobs__job_id__files__name__get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GeometryConfig": {
+        "properties": {
+          "dataset_id": {
+            "type": "string",
+            "title": "Dataset Id",
+            "default": "0000"
+          },
+          "seed": {
+            "type": "integer",
+            "title": "Seed",
+            "default": 7301
+          },
+          "reference_frame": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Reference Frame",
+            "default": 0
+          },
+          "pixel_stride": {
+            "type": "integer",
+            "maximum": 32.0,
+            "minimum": 1.0,
+            "title": "Pixel Stride",
+            "default": 4
+          },
+          "frame_stride": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Frame Stride",
+            "default": 1
+          },
+          "voxel_m": {
+            "type": "number",
+            "maximum": 0.01,
+            "exclusiveMinimum": 0.0,
+            "title": "Voxel M",
+            "default": 0.003
+          },
+          "adaptive_voxel": {
+            "type": "boolean",
+            "title": "Adaptive Voxel",
+            "default": true
+          },
+          "roi_margin_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Roi Margin M",
+            "default": 0.22
+          },
+          "depth_min_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Depth Min M",
+            "default": 0.15
+          },
+          "depth_max_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Depth Max M",
+            "default": 2.0
+          },
+          "depth_jump_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Depth Jump M",
+            "default": 0.025
+          },
+          "mask_erosion_px": {
+            "type": "integer",
+            "maximum": 3.0,
+            "minimum": 0.0,
+            "title": "Mask Erosion Px",
+            "default": 1
+          },
+          "semantic_confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.5,
+            "title": "Semantic Confidence",
+            "default": 0.8
+          },
+          "min_voxel_observations": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Min Voxel Observations",
+            "default": 2
+          },
+          "sensor_uncertainty_m": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Sensor Uncertainty M",
+            "default": 0.004
+          },
+          "environment_clearance_m": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Environment Clearance M",
+            "default": 0.002
+          },
+          "target_penetration_tolerance_m": {
+            "type": "number",
+            "maximum": 0.001,
+            "minimum": 0.0,
+            "title": "Target Penetration Tolerance M",
+            "default": 0.0005
+          },
+          "alignment_median_limit_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Alignment Median Limit M",
+            "default": 0.008
+          },
+          "alignment_p95_limit_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Alignment P95 Limit M",
+            "default": 0.025
+          },
+          "sor_k": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 5.0,
+            "title": "Sor K",
+            "default": 20
+          },
+          "sor_std": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Sor Std",
+            "default": 2.0
+          },
+          "radius_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Radius M",
+            "default": 0.009
+          },
+          "radius_min_neighbors": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Radius Min Neighbors",
+            "default": 5
+          },
+          "dbscan_eps_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Dbscan Eps M",
+            "default": 0.01
+          },
+          "dbscan_min_samples": {
+            "type": "integer",
+            "minimum": 2.0,
+            "title": "Dbscan Min Samples",
+            "default": 8
+          },
+          "dbscan_min_cluster": {
+            "type": "integer",
+            "minimum": 5.0,
+            "title": "Dbscan Min Cluster",
+            "default": 50
+          },
+          "occupancy_min_views": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Occupancy Min Views",
+            "default": 3
+          },
+          "filter_min_views": {
+            "type": "integer",
+            "minimum": 2.0,
+            "title": "Filter Min Views",
+            "default": 3
+          },
+          "evidence_frames": {
+            "type": "integer",
+            "maximum": 318.0,
+            "minimum": 5.0,
+            "title": "Evidence Frames",
+            "default": 64
+          },
+          "bbox_scale": {
+            "type": "number",
+            "maximum": 1.5,
+            "minimum": 1.0,
+            "title": "Bbox Scale",
+            "default": 1.25
+          },
+          "bbox_policy": {
+            "type": "string",
+            "enum": [
+              "evidence",
+              "erase_unverified"
+            ],
+            "title": "Bbox Policy",
+            "default": "evidence"
+          },
+          "relabel_band_m": {
+            "type": "number",
+            "maximum": 0.01,
+            "minimum": 0.0,
+            "title": "Relabel Band M",
+            "default": 0.008
+          },
+          "relabel_min_views": {
+            "type": "integer",
+            "minimum": 2.0,
+            "title": "Relabel Min Views",
+            "default": 3
+          },
+          "relabel_vote_fraction": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.5,
+            "title": "Relabel Vote Fraction",
+            "default": 0.6
+          },
+          "depth_agreement_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Depth Agreement M",
+            "default": 0.008
+          },
+          "plane_threshold_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Plane Threshold M",
+            "default": 0.0035
+          },
+          "plane_min_points": {
+            "type": "integer",
+            "minimum": 30.0,
+            "title": "Plane Min Points",
+            "default": 80
+          },
+          "max_obstacle_planes": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 0.0,
+            "title": "Max Obstacle Planes",
+            "default": 8
+          },
+          "candidates_per_object": {
+            "type": "integer",
+            "maximum": 1000.0,
+            "minimum": 10.0,
+            "title": "Candidates Per Object",
+            "default": 200
+          },
+          "yaw_count": {
+            "type": "integer",
+            "maximum": 32.0,
+            "minimum": 4.0,
+            "title": "Yaw Count",
+            "default": 12
+          },
+          "axial_samples": {
+            "type": "integer",
+            "maximum": 40.0,
+            "minimum": 5.0,
+            "title": "Axial Samples",
+            "default": 19
+          },
+          "tilt_degrees": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Tilt Degrees"
+          },
+          "max_contact_angle_deg": {
+            "type": "number",
+            "maximum": 75.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Max Contact Angle Deg",
+            "default": 35.0
+          },
+          "approach_distance_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Approach Distance M",
+            "default": 0.1
+          },
+          "max_tcp_speed_m_s": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Max Tcp Speed M S",
+            "default": 0.08
+          },
+          "max_tcp_accel_m_s2": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Max Tcp Accel M S2",
+            "default": 0.3
+          },
+          "path_sample_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Path Sample M",
+            "default": 0.005
+          },
+          "closure_step_rad": {
+            "type": "number",
+            "maximum": 0.1,
+            "exclusiveMinimum": 0.0,
+            "title": "Closure Step Rad",
+            "default": 0.04
+          },
+          "top_k": {
+            "type": "integer",
+            "maximum": 50.0,
+            "minimum": 1.0,
+            "title": "Top K",
+            "default": 10
+          },
+          "target_instances": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Instances"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "GeometryConfig"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HardwareSpec": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "enum": [
+              "2fg7",
+              "rg2",
+              "rg6"
+            ],
+            "title": "Model",
+            "default": "2fg7"
+          },
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Name",
+            "default": "OnRobot_2FG7"
+          },
+          "contact_inset_m": {
+            "type": "number",
+            "maximum": 0.008,
+            "minimum": 0.002,
+            "title": "Contact Inset M",
+            "default": 0.002
+          },
+          "opening_extra_m": {
+            "type": "number",
+            "maximum": 0.04,
+            "exclusiveMinimum": 0.0,
+            "title": "Opening Extra M",
+            "default": 0.012
+          },
+          "closing_speed_m_s": {
+            "type": "number",
+            "maximum": 0.03,
+            "exclusiveMinimum": 0.0,
+            "title": "Closing Speed M S",
+            "default": 0.02
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "HardwareSpec"
+      },
+      "PlanRequest": {
+        "properties": {
+          "dataset_id": {
+            "type": "string",
+            "pattern": "^\\d{4}$",
+            "title": "Dataset Id",
+            "default": "0000"
+          },
+          "planner": {
+            "$ref": "#/components/schemas/GeometryConfig"
+          },
+          "grippers": {
+            "items": {
+              "$ref": "#/components/schemas/HardwareSpec"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "minItems": 1,
+            "title": "Grippers"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "grippers"
+        ],
+        "title": "PlanRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+model: 2fg7
+name: OnRobot_2FG7
+contact_inset_m: 0.002
+opening_extra_m: 0.012
+closing_speed_m_s: 0.02

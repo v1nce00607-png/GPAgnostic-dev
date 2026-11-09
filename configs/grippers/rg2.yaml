@@ -1,0 +1,5 @@
+model: rg2
+name: OnRobot_RG2
+contact_inset_m: 0.002
+opening_extra_m: 0.012
+closing_speed_m_s: 0.02

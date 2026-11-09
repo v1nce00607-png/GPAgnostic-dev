@@ -1,0 +1,80 @@
+{
+  "zip_sha256": "eea15967e724114abc002dbe9c354e8aabb8d1f9a262b948c7f6e936e8c09374",
+  "part_count": 12,
+  "parts": [
+    {
+      "filename": "capture0000_sources.zip.001",
+      "size": 99614720,
+      "sha256": "62725d5bd90d55e66b8e128b5cfa3a5a9877c50c4ceb5d1475fffedb494e18aa"
+    },
+    {
+      "filename": "capture0000_sources.zip.002",
+      "size": 99614720,
+      "sha256": "d8ab88352de1cdee99023719db89a43e8d430e295e6a5a734681b28bf46881fc"
+    },
+    {
+      "filename": "capture0000_sources.zip.003",
+      "size": 99614720,
+      "sha256": "359b09a34d74700d89ad429f8682038ac421c3cbe1a35f509641cb84bcab51dc"
+    },
+    {
+      "filename": "capture0000_sources.zip.004",
+      "size": 99614720,
+      "sha256": "f5b5f7637a3621341f19a5896f3acc9696432d443c112d01955746f6d616b1b7"
+    },
+    {
+      "filename": "capture0000_sources.zip.005",
+      "size": 99614720,
+      "sha256": "9c5a3f02bf5f810fb0f25c2b152fb2d55309929594c774e63b9f65eee5d60732"
+    },
+    {
+      "filename": "capture0000_sources.zip.006",
+      "size": 99614720,
+      "sha256": "b2f0ed21829a6d1a00b2d95ea2a4a67821b15b051e5e061775b02defe76f66df"
+    },
+    {
+      "filename": "capture0000_sources.zip.007",
+      "size": 99614720,
+      "sha256": "de56965bb447248744b6f9aec6f414c6c4c0afe550c2331fb0508743e2867916"
+    },
+    {
+      "filename": "capture0000_sources.zip.008",
+      "size": 99614720,
+      "sha256": "a232e50ff6e177ea82332e04807e012eae835a98c3fb6508151be89b6831c3ff"
+    },
+    {
+      "filename": "capture0000_sources.zip.009",
+      "size": 99614720,
+      "sha256": "3fe6b82cf0fadfcd5b5f3fb48dd7a2c010d4cb9955f1163c9fbf1383bafa4b12"
+    },
+    {
+      "filename": "capture0000_sources.zip.010",
+      "size": 99614720,
+      "sha256": "bf68d99add144a880edf185d534464260013f726f97319239e15adebe3ed6f3d"
+    },
+    {
+      "filename": "capture0000_sources.zip.011",
+      "size": 99614720,
+      "sha256": "255978ec822539eb3b4832bd1eee16979c607831b32da7965a45c735a6b0817f"
+    },
+    {
+      "filename": "capture0000_sources.zip.012",
+      "size": 47791558,
+      "sha256": "7a64d43bfaa84ba203f3deaac8d3b609cd2e07d323fedc865a7fabc4c5f4af6e"
+    }
+  ],
+  "diagnostics": {
+    "repository": "KarolyArmin/Hand_tools",
+    "capture": "0000",
+    "revision": "05317886ea2d9ea68811bf3695ea86f75399518e",
+    "created_utc": "2026-10-27T13:19:00.509880+00:00",
+    "file_count": 1613,
+    "depth_like_count": 318,
+    "mask_like_count": 318,
+    "cad_file_count": 3,
+    "depth_png_bit_depths": {
+      "16": 318
+    },
+    "warnings": []
+  }
+}

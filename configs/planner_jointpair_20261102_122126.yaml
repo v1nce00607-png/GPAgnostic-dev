@@ -1,0 +1,105 @@
+dataset_id: '0000'
+seed: 7301
+reference_frame: 0
+pixel_stride: 4
+frame_stride: 1
+voxel_m: 0.003
+adaptive_voxel: true
+roi_margin_m: 0.22
+depth_min_m: 0.15
+depth_max_m: 2.0
+depth_jump_m: 0.025
+mask_erosion_px: 1
+semantic_confidence: 0.8
+min_voxel_observations: 2
+sensor_uncertainty_m: 0.004
+environment_clearance_m: 0.002
+target_penetration_tolerance_m: 0.0005
+alignment_median_limit_m: 0.008
+alignment_p95_limit_m: 0.025
+sor_k: 20
+sor_std: 2.0
+radius_m: 0.009
+radius_min_neighbors: 5
+dbscan_eps_m: 0.01
+dbscan_min_samples: 8
+dbscan_min_cluster: 50
+occupancy_min_views: 3
+filter_min_views: 3
+evidence_frames: 64
+bbox_scale: 1.25
+bbox_policy: evidence
+relabel_band_m: 0.008
+relabel_min_views: 3
+relabel_vote_fraction: 0.6
+relabel_max_competitor_fraction: 0.10
+relabel_min_dominance_ratio: 5.0
+depth_agreement_m: 0.008
+plane_threshold_m: 0.0035
+plane_min_points: 80
+max_obstacle_planes: 8
+candidates_per_object: 80
+candidate_screen_multiplier: 1
+prefer_exact_watertight_meshes: true
+# OPT3 experimental filters; baseline and OPT1 configurations remain unchanged.
+floating_policy: depth_confirmed
+floating_min_height_m: 0.012
+floating_min_free_views: 8
+floating_free_to_occupied_ratio: 4.0
+# Witness-validated fingertip contact; body collision remains strict.
+target_contact_policy: local_pad_witness
+target_contact_patch_radius_m: 0.0025
+target_contact_surface_distance_m: 0.0006
+approach_precheck_for_joint_pass: true
+target_body_clearance_ranking: true
+yaw_count: 12
+axial_samples: 19
+tilt_degrees:
+- 0.0
+- 20.0
+- 40.0
+max_contact_angle_deg: 35.0
+approach_distance_m: 0.1
+max_tcp_speed_m_s: 0.08
+max_tcp_accel_m_s2: 0.3
+path_sample_m: 0.005
+closure_step_rad: 0.04
+top_k: 10
+target_instances: [Pliers_002]
+# Protects labeled points, support plane, and the other annotated CAD AABBs.
+halo_policy: experimental_roi
+halo_objects:
+- Pliers_001
+- Pliers_002
+- Rachet_001
+- Screwdriver_001
+halo_margin_m: 0.018
+halo_ceiling_margin_m: 0.035
+halo_plane_guard_m: 0.008
+halo_other_object_guard_m: 0.006
+
+# OPT5: all gates unchanged; rotate the actual pad axis, screen exact geometry.
+opt5_enabled: true
+opt5_refine_seeds_per_group: 0
+opt5_refine_roll_deg: [-45.0, -25.0, -12.0, 12.0, 25.0, 45.0]
+opt5_approach_lateral_m: [0.025, 0.05]
+opt5_closure_step_m: 0.002
+
+# OPT5 CAD-guided adaptive closure (experimental, original open-CAD surface)
+# Bounding box positions the open jaw; original CAD triangles determine first contact.
+# PASS on an open CAD surface is conditional and does not certify hidden solid volume.
+target_body_model: original_surface_ablation
+adaptive_closure_enabled: true
+adaptive_obb_half_window_m: 0.012
+adaptive_obb_side_clearance_m: 0.003
+adaptive_contact_tolerance_m: 0.0004
+adaptive_contact_search_steps: 9
+adaptive_contact_undertravel_m: 0.001
+adaptive_attempts_per_object: 12
+adaptive_mount_x_offsets_m: [0.0]
+opt5_closure_step_m: 0.0005
+closure_step_rad: 0.015
+
+opt5_static_pair_enabled: true
+opt5_static_pair_attempts_per_object: 24
+opt5_static_pair_max_checks: 15

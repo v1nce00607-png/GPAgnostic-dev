@@ -1,0 +1,334 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "dataset_id": {
+      "default": "0000",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "seed": {
+      "default": 7301,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "reference_frame": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Reference Frame",
+      "type": "integer"
+    },
+    "pixel_stride": {
+      "default": 4,
+      "maximum": 32,
+      "minimum": 1,
+      "title": "Pixel Stride",
+      "type": "integer"
+    },
+    "frame_stride": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Frame Stride",
+      "type": "integer"
+    },
+    "voxel_m": {
+      "default": 0.003,
+      "exclusiveMinimum": 0,
+      "maximum": 0.01,
+      "title": "Voxel M",
+      "type": "number"
+    },
+    "adaptive_voxel": {
+      "default": true,
+      "title": "Adaptive Voxel",
+      "type": "boolean"
+    },
+    "roi_margin_m": {
+      "default": 0.22,
+      "exclusiveMinimum": 0,
+      "title": "Roi Margin M",
+      "type": "number"
+    },
+    "depth_min_m": {
+      "default": 0.15,
+      "exclusiveMinimum": 0,
+      "title": "Depth Min M",
+      "type": "number"
+    },
+    "depth_max_m": {
+      "default": 2.0,
+      "exclusiveMinimum": 0,
+      "title": "Depth Max M",
+      "type": "number"
+    },
+    "depth_jump_m": {
+      "default": 0.025,
+      "exclusiveMinimum": 0,
+      "title": "Depth Jump M",
+      "type": "number"
+    },
+    "mask_erosion_px": {
+      "default": 1,
+      "maximum": 3,
+      "minimum": 0,
+      "title": "Mask Erosion Px",
+      "type": "integer"
+    },
+    "semantic_confidence": {
+      "default": 0.8,
+      "maximum": 1,
+      "minimum": 0.5,
+      "title": "Semantic Confidence",
+      "type": "number"
+    },
+    "min_voxel_observations": {
+      "default": 2,
+      "minimum": 1,
+      "title": "Min Voxel Observations",
+      "type": "integer"
+    },
+    "sensor_uncertainty_m": {
+      "default": 0.004,
+      "minimum": 0,
+      "title": "Sensor Uncertainty M",
+      "type": "number"
+    },
+    "environment_clearance_m": {
+      "default": 0.002,
+      "minimum": 0,
+      "title": "Environment Clearance M",
+      "type": "number"
+    },
+    "target_penetration_tolerance_m": {
+      "default": 0.0005,
+      "maximum": 0.001,
+      "minimum": 0,
+      "title": "Target Penetration Tolerance M",
+      "type": "number"
+    },
+    "alignment_median_limit_m": {
+      "default": 0.008,
+      "exclusiveMinimum": 0,
+      "title": "Alignment Median Limit M",
+      "type": "number"
+    },
+    "alignment_p95_limit_m": {
+      "default": 0.025,
+      "exclusiveMinimum": 0,
+      "title": "Alignment P95 Limit M",
+      "type": "number"
+    },
+    "sor_k": {
+      "default": 20,
+      "maximum": 100,
+      "minimum": 5,
+      "title": "Sor K",
+      "type": "integer"
+    },
+    "sor_std": {
+      "default": 2.0,
+      "exclusiveMinimum": 0,
+      "title": "Sor Std",
+      "type": "number"
+    },
+    "radius_m": {
+      "default": 0.009,
+      "exclusiveMinimum": 0,
+      "title": "Radius M",
+      "type": "number"
+    },
+    "radius_min_neighbors": {
+      "default": 5,
+      "minimum": 1,
+      "title": "Radius Min Neighbors",
+      "type": "integer"
+    },
+    "dbscan_eps_m": {
+      "default": 0.01,
+      "exclusiveMinimum": 0,
+      "title": "Dbscan Eps M",
+      "type": "number"
+    },
+    "dbscan_min_samples": {
+      "default": 8,
+      "minimum": 2,
+      "title": "Dbscan Min Samples",
+      "type": "integer"
+    },
+    "dbscan_min_cluster": {
+      "default": 50,
+      "minimum": 5,
+      "title": "Dbscan Min Cluster",
+      "type": "integer"
+    },
+    "occupancy_min_views": {
+      "default": 3,
+      "minimum": 1,
+      "title": "Occupancy Min Views",
+      "type": "integer"
+    },
+    "filter_min_views": {
+      "default": 3,
+      "minimum": 2,
+      "title": "Filter Min Views",
+      "type": "integer"
+    },
+    "evidence_frames": {
+      "default": 64,
+      "maximum": 318,
+      "minimum": 5,
+      "title": "Evidence Frames",
+      "type": "integer"
+    },
+    "bbox_scale": {
+      "default": 1.25,
+      "maximum": 1.5,
+      "minimum": 1.0,
+      "title": "Bbox Scale",
+      "type": "number"
+    },
+    "bbox_policy": {
+      "default": "evidence",
+      "enum": [
+        "evidence",
+        "erase_unverified"
+      ],
+      "title": "Bbox Policy",
+      "type": "string"
+    },
+    "relabel_band_m": {
+      "default": 0.008,
+      "maximum": 0.01,
+      "minimum": 0,
+      "title": "Relabel Band M",
+      "type": "number"
+    },
+    "relabel_min_views": {
+      "default": 3,
+      "minimum": 2,
+      "title": "Relabel Min Views",
+      "type": "integer"
+    },
+    "relabel_vote_fraction": {
+      "default": 0.6,
+      "maximum": 1,
+      "minimum": 0.5,
+      "title": "Relabel Vote Fraction",
+      "type": "number"
+    },
+    "depth_agreement_m": {
+      "default": 0.008,
+      "exclusiveMinimum": 0,
+      "title": "Depth Agreement M",
+      "type": "number"
+    },
+    "plane_threshold_m": {
+      "default": 0.0035,
+      "exclusiveMinimum": 0,
+      "title": "Plane Threshold M",
+      "type": "number"
+    },
+    "plane_min_points": {
+      "default": 80,
+      "minimum": 30,
+      "title": "Plane Min Points",
+      "type": "integer"
+    },
+    "max_obstacle_planes": {
+      "default": 8,
+      "maximum": 20,
+      "minimum": 0,
+      "title": "Max Obstacle Planes",
+      "type": "integer"
+    },
+    "candidates_per_object": {
+      "default": 200,
+      "maximum": 1000,
+      "minimum": 10,
+      "title": "Candidates Per Object",
+      "type": "integer"
+    },
+    "yaw_count": {
+      "default": 12,
+      "maximum": 32,
+      "minimum": 4,
+      "title": "Yaw Count",
+      "type": "integer"
+    },
+    "axial_samples": {
+      "default": 19,
+      "maximum": 40,
+      "minimum": 5,
+      "title": "Axial Samples",
+      "type": "integer"
+    },
+    "tilt_degrees": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Tilt Degrees",
+      "type": "array"
+    },
+    "max_contact_angle_deg": {
+      "default": 35.0,
+      "exclusiveMinimum": 0,
+      "maximum": 75,
+      "title": "Max Contact Angle Deg",
+      "type": "number"
+    },
+    "approach_distance_m": {
+      "default": 0.1,
+      "exclusiveMinimum": 0,
+      "title": "Approach Distance M",
+      "type": "number"
+    },
+    "max_tcp_speed_m_s": {
+      "default": 0.08,
+      "exclusiveMinimum": 0,
+      "title": "Max Tcp Speed M S",
+      "type": "number"
+    },
+    "max_tcp_accel_m_s2": {
+      "default": 0.3,
+      "exclusiveMinimum": 0,
+      "title": "Max Tcp Accel M S2",
+      "type": "number"
+    },
+    "path_sample_m": {
+      "default": 0.005,
+      "exclusiveMinimum": 0,
+      "title": "Path Sample M",
+      "type": "number"
+    },
+    "closure_step_rad": {
+      "default": 0.04,
+      "exclusiveMinimum": 0,
+      "maximum": 0.1,
+      "title": "Closure Step Rad",
+      "type": "number"
+    },
+    "top_k": {
+      "default": 10,
+      "maximum": 50,
+      "minimum": 1,
+      "title": "Top K",
+      "type": "integer"
+    },
+    "target_instances": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Instances"
+    }
+  },
+  "title": "GeometryConfig",
+  "type": "object"
+}
