@@ -1,29 +1,29 @@
-# Grasp Planner: szemantikusan annotált 3D jelenetek geometriai megfogástervezése
+# Grasp Planner: Geometric Grasp Planning in Semantically Annotated 3D Scenes
 
-A kutatási prototípus egy RGB-D alapú rekonstrukcióból, tárgy-CAD modellekből és gyártói megfogómodellekből készít és geometriailag ellenőriz megfogási jelölteket. Három párhuzamos pofás OnRobot megfogóval vizsgáltam: RG2, RG6, 2FG7.
+This research prototype generates and geometrically validates grasp candidates using an RGB-D-based 3D reconstruction, object CAD models, and manufacturer-provided gripper models. I evaluated the system with three OnRobot parallel-jaw grippers: RG2, RG6, and 2FG7.
 
-## Tudományos hatókör
+## Research Scope and Limitations
 
-A `PASS` azt jelzi, hogy az adott jelölt megfelel a megadott geometriai feltételeknek. Nem igazolja a fizikai megtarthatóságot, a robotkar inverz kinematikáját vagy a valós végrehajtást. Egyes PASS jelöltek nem rendelkeznek önállóan ellenőrzött kétoldali OEM-kontaktussal. A szűrt pontfelhőben alkalmazott tárgyközeli ponttörlés feltételes geometriai döntéseket eredményez.
+A `PASS` result means that a grasp candidate satisfies the configured geometric checks. It does **not** demonstrate physical grasp stability, robot-arm inverse kinematics feasibility, or successful execution on a real robot. Some candidates marked `PASS` do not have independently verified bilateral contact between the original equipment manufacturer (OEM) finger pads and the object. Object-adjacent point removal during point-cloud filtering also means that geometric decisions must be interpreted with caution.
 
-## Projektfelépítés
+## Repository Structure
 
 ```text
-grasp_planner/             fő algoritmusok és megfogó-adapterek
-  assets/                 OnRobot gyártói modellek és licenc
-configs/                  bemeneti és megfogó-konfigurációk
-scripts/                  importálás, audit, benchmark, riportok
-tests/                    automatizált ellenőrző tesztek
-docs/                     architektúra, adatséma, eredmények, API
-examples/                 mintakliens
-data/                     helyi bemenetek (gitignore)
-results/                  helyi eredmények (gitignore)
-provenance/               bemeneti eredet és ellenőrzőösszegek
+grasp_planner/             Core algorithms and gripper adapters
+  assets/                 OnRobot manufacturer models and license
+configs/                  Input and gripper configurations
+scripts/                  Import, auditing, benchmarking, and reporting tools
+tests/                    Automated tests
+docs/                     Architecture, data schema, results, and API documentation
+examples/                 Example client
+data/                     Local input data (excluded by .gitignore)
+results/                  Local results (excluded by .gitignore)
+provenance/               Data provenance and checksums
 ```
 
-## Telepítés
+## Installation
 
-Python 3.10+ és a platformhoz illeszkedő `python-fcl` függőség szükséges.
+Python 3.10 or newer is required, along with a platform-compatible installation of `python-fcl`.
 
 ```powershell
 Set-Location 'C:\ProjektGP\GPagnostic-dev'
@@ -33,20 +33,20 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pytest -q tests
 ```
 
-Az alábbi példa a korábban előkészített adatgyűjteményből fut; a bemeneti mappa elérési útját saját környezetben kell beállítani:
+The following example runs the planner with the previously prepared dataset. Adjust the input and output paths to match your local environment:
 
 ```powershell
 Set-Location 'C:\ProjektGP\GPagnostic-dev'
 .\.venv\Scripts\python.exe -m grasp_planner.cli run --dataset 'C:\ProjektGP\Hand_tools\0000' --config '.\configs\planner_geometry_final.yaml' --gripper '.\configs\grippers\2fg7.yaml' --gripper '.\configs\grippers\rg2.yaml' --gripper '.\configs\grippers\rg6.yaml' --output 'C:\ProjektGP\GPagnostic_run_new'
 ```
 
-A konfigurációban szereplő nagyobb feladatok számításigényesek, és az eredeti capture adatai nélkül nem működnek. A tesztek és a tervező nem lettek újrafuttatva ennek a GitHub-csomagnak az előállításakor.
+Some configurations are computationally demanding, and the planner requires the original capture data. The automated tests and planner were not rerun when this GitHub-ready package was prepared.
 
-## Dokumentáció
+## Documentation
 
-- `docs/ARCHITECTURE.md`: az adatfolyam, modulok és fontos függvények
-- `docs/RESULTS_SUMMARY.md`: reprodukálhatóan értelmezhető eredmények
-- `docs/METHOD_AND_TDK.md`: eredeti részletes technikai háttér
-- `NOTICE.md`: adatok és harmadik féltől származó tartalmak eredete
+- `docs/ARCHITECTURE.md`: Data flow, modules, and important functions.
+- `docs/RESULTS_SUMMARY.md`: Results and their interpretation, including reproducibility considerations.
+- `docs/METHOD_AND_TDK.md`: Detailed technical background for the research project.
+- `NOTICE.md`: Data provenance and information about third-party materials.
 
-A repó előkészített helyi projekt, nem került automatikusan GitHubra feltöltésre. A közzététel előtt ellenőrizd a saját kód licencelését és minden mellékelt gyártói adat felhasználási feltételeit.
+This repository was prepared as a local project and was not automatically published to GitHub. Before making it public, verify the licensing of your own code and the usage terms of all included manufacturer-provided data.
